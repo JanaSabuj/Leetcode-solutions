@@ -1,10 +1,11 @@
 class Solution {
 public:
 
-    int digSum(int n){
+    int digSumSq(int n){
         int sum=0;
         while(n>0){
-            sum += n%10;
+            int x = n%10;
+            sum += x*x;
             n/=10;
         }
 
@@ -14,7 +15,7 @@ public:
         if(n==1)
             return true;
         
-        int sum=digSum(n); 
+        int sum=digSumSq(n); 
         
         if(hash[sum])
             return false;
