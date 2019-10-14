@@ -1,20 +1,22 @@
 class Solution {
 public:
+
+    int digSum(int n){
+        int sum=0;
+        while(n>0){
+            sum += n%10;
+            n/=10;
+        }
+
+        return sum;
+    }
     bool isHappy(int n, map<int,int> &hash) {
         if(n==1)
             return true;
         
-        int cp = n;
-        int sum=0;
+        int sum=digSum(n); 
         
-        while(n>0){
-            int x = n%10;
-            sum += x*x;
-            
-            n/=10;
-        }
-        
-        if(sum==cp or hash[sum])
+        if(hash[sum])
             return false;
         
         hash[sum]++;
