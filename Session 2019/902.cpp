@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/numbers-at-most-n-given-digit-set/discuss/168439/C%2B%2B-O(logN)-Clear-code-with-explanation
+
 class Solution {
 public:
 	int atMostNGivenDigitSet(vector<string>& D, int N) {
@@ -18,6 +20,7 @@ public:
 			// 5 4 2 3
 			// _ _ _ _
 			bool equalDig = false;
+
 			for (auto x : D) {
 				// int x = stoi(y);
 				if (x[0] < NS[i])
