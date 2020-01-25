@@ -23,20 +23,38 @@ void print1d(const vector<int>& vec) {for (auto val : vec) {cout << val << " ";}
 
 void print2d(const vector<vector<int>>& vec) {for (auto row : vec) {for (auto val : row) {cout << val << " ";} cout << endl;}}
 
+struct comp{
+	bool operator()(const int& x, const int& y){
+		// y is the new element
+		// y
+		// x
+		return y > x;// MaxHeap
+	}
+};
+
+
 signed main() {
 
 	freopen("input.txt", "r", stdin);
 	crap;
 
 	std::vector<int> A = {4, 3, 2, 1, 6, 5};
-	partition(A.begin(), A.end(), [](int x) {
-		return x % 2 == 0;
-	});
+	// partition(A.begin(), A.end(), [](int x) {
+	// 	return x % 2 == 0;
+	// });
 
-	print1d(A);
+	// print1d(A);
 
-	 cout << partition_point(A.begin(), A.end(), [](int x) {return x % 2 == 0;}) - A.begin() << endl;
+	//  cout << partition_point(A.begin(), A.end(), [](int x) {return x % 2 == 0;}) - A.begin() << endl;
 	
+	priority_queue<int, vector<int>, comp> pq;
+	for(auto x: A)
+		pq.push(x);
+
+	while(!pq.empty()){
+		cout << pq.top() <<endl;
+		pq.pop();
+	}
 
 	return 0;
 }

@@ -49,3 +49,37 @@ public:
         return points;
     }
 };
+
+// ---------------------------------------------------------------------------------
+// MaxHeap
+class Solution {
+public:
+    struct comp {
+       bool operator()(const vector<int>& x, const vector<int>& y){
+           int dis1 = x[0]*x[0] + x[1]*x[1];
+           int dis2 = y[0]*y[0] + y[1]*y[1];
+           
+           return dis2 > dis1; // MaxHeap when y is greater
+       }  
+    };
+    
+    
+    vector<vector<int>> kClosest(vector<vector<int>>& points, int K) {
+        priority_queue<vector<int>, vector<vector<int>>, comp> pq;
+        
+        for(auto row: points){
+            pq.push(row);// MaxHeap
+            if(pq.size() > K){
+                pq.pop();
+            }
+        }
+        
+        vector<vector<int>> vec;
+        while(!pq.empty()){
+            vec.push_back(pq.top());
+            pq.pop();
+        }
+        
+        return vec;
+    }
+};
