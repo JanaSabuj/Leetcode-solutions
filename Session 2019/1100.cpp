@@ -67,6 +67,7 @@ int KLSub(string S, int K){
 
 	int cnt = 0;
 
+	// initial K
 	for(int i = 0; i < K; i++){
 		alpha[S[i] - 'a']++;
 	}
@@ -75,12 +76,41 @@ int KLSub(string S, int K){
 	if(check(alpha))
 		cnt++;
 
+	// Slide
 	for(int i = K; i < n; i++){
 		alpha[S[i] - 'a']++;
 		alpha[S[i-K] - 'a']--;
 
 		if(check(alpha))
 			cnt++;
+	}
+
+	return cnt;
+}
+
+int KLSub2P(string S, int K){
+	// 2-pointer + sliding window
+	int l = 0;// left pointer
+	int r ;// right pointer
+
+	int n = S.length();
+	map<int,int> mp;
+
+	int cnt = 0;// ans
+
+	for(r = 0; r < n; r++){
+		mp[S[r] - 'a']++;
+
+		while(mp[S[r] - 'a'] > 1){
+			mp[S[l] - 'a'] -=1;// move the pointer left forward
+			l++;// ...
+		}
+
+		if (r - l + 1 == K){
+			cnt++;
+			mp[S[l] - 'a']--;//move l forward so that length K is preserved in next 
+			l++;// move of r 
+		}
 	}
 
 	return cnt;
@@ -95,6 +125,7 @@ signed main() {
     int K = 5;
 
     cout << KLSub(S, K) <<endl;
+    cout << KLSub2P(S, K) <<endl;
 
 	return 0;
 }
