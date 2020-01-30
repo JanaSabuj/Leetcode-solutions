@@ -47,23 +47,33 @@ signed main() {
 
 	//  cout << partition_point(A.begin(), A.end(), [](int x) {return x % 2 == 0;}) - A.begin() << endl;
 	
-	priority_queue<int, vector<int>, comp> pq;
-	for(auto x: A)
-		pq.push(x);
+	// priority_queue<int, vector<int>, comp> pq;
+	// for(auto x: A)
+	// 	pq.push(x);
 
-	while(!pq.empty()){
-		cout << pq.top() <<endl;
-		pq.pop();
-	}
+	// while(!pq.empty()){
+	// 	cout << pq.top() <<endl;
+	// 	pq.pop();
+	// }
 
-	set<int> s;
-	s.insert(5);
-	s.insert(2);
+	// set<int> s;
+	// s.insert(5);
+	// s.insert(2);
 
-	if(s.find(3) != s.end())
-		cout <<"Found";
-	else
-		cout <<"Not Found";
+	// if(s.find(3) != s.end())
+	// 	cout <<"Found";
+	// else
+	// 	cout <<"Not Found";
+
+
+	// cout << 'B' - 'A' <<endl;
+	// cout << 'b' - 'a' <<endl;
+	// cout << 'a' - 'A' <<endl;
+
+	// int k = -1;// 0 1,-1
+	// if(k)
+	// 	cout << "Positive or Negative" <<endl;
+
 
 	return 0;
 }
