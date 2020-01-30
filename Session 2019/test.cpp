@@ -61,7 +61,7 @@ signed main() {
 	// s.insert(2);
 
 	// if(s.find(3) != s.end())
-	// 	cout <<"Found";
+	// 	cout <<"Found";	
 	// else
 	// 	cout <<"Not Found";
 
@@ -73,6 +73,13 @@ signed main() {
 	// int k = -1;// 0 1,-1
 	// if(k)
 	// 	cout << "Positive or Negative" <<endl;
+
+	map<int,int> mp;
+	mp[1]++;
+	mp[2]++;
+	mp[2]--;	
+
+	cout << mp.size() <<endl;
 
 
 	return 0;
