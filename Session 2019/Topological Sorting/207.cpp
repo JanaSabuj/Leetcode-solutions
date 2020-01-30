@@ -84,3 +84,47 @@ public:
             return false;
     }
 };
+
+--------------------------------------------------------------------------
+// Kahn's Algorithm
+class Solution {
+public:
+    
+    bool Kahn(vector<vector<int>>& adj, vector<int>& indegree, int n){
+        queue<int> q;
+        for(int i = 0; i < n; i++)
+            if(indegree[i] == 0)
+                q.push(i);
+        
+        int cnt = 0;
+        
+        while(!q.empty()){
+            int u = q.front();
+            q.pop();
+            cnt++;
+            
+            for(auto v: adj[u]){
+                indegree[v]--;
+                if(indegree[v] == 0)
+                    q.push(v);
+            }
+        }
+        
+        return cnt == n;
+        
+        
+    }
+    
+    
+    bool canFinish(int n, vector<vector<int>>& prereqs) {
+        vector<vector<int>> adj(n);
+        vector<int> indegree(n);
+        
+        for(auto edge: prereqs){
+            adj[edge[0]].push_back(edge[1]);
+            indegree[edge[1]]++;    
+        }
+        
+        return Kahn(adj ,indegree, n);
+    }
+};
