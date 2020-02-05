@@ -81,6 +81,11 @@ signed main() {
 
 	cout << mp.size() <<endl;
 
+	string ans = "HEllo ";
+	ans[2] = 'P';
+	cout << ans;
+
+
 
 	return 0;
 }
