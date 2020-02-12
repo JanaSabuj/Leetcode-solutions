@@ -65,10 +65,8 @@ public:
 	}
 
 	void dfs(const vector<vector<int>>& adj, int N, int color[]) {
-
 		memset(color, 0, sizeof(color));
-		color[1] = 1;
-
+		
 		for (int i = 1; i <= N; i++)
 			if (color[i] == 0) // not colored
 				DFSUtil(i, color);
