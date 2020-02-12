@@ -1,5 +1,6 @@
 /*-------------------------------@greenindia-Sabuj-Jana----------------------------------*/
-
+// Bellman Ford SCCP
+// Neg weight cycle check included
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -28,8 +29,15 @@ void bellman(const vector<pair<int, pair<int, int>>>& edges, int n, int src) {
 		int v = edge.second.first;
 		int wt = edge.second.second;
 
-		if (dist[u] != INT_MAX and dist[u] + wt < dist[v])
-			dist[v] = dist[u] + wt;
+		if (dist[u] != INT_MAX and dist[u] + wt < dist[v]) {
+			cout << "Negative weight cycle !!!" << endl;
+			return;
+		}
+	}
+
+	// if no neg edge weight cycle
+	for(int i = 0; i < n; i++){
+		cout << i <<" " << dist[i] << endl;
 	}
 
 }
