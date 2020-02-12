@@ -7,6 +7,8 @@ void bellman(const vector<pair<int, pair<int, int>>>& edges, int n, int src) {
 	// reach from src to a dest using atmost n-1 edges
 	vector<vector<int>> dp(n, vector<int>(n, INT_MAX));
 
+	// dp[steps][dest] = min cost incurred to reach dest with atleast `steps` edges
+
 	// src
 	for(int i = 0; i < n; i++)
 		dp[i][src] = 0;
