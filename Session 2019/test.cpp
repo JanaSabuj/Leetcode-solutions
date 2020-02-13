@@ -74,16 +74,24 @@ signed main() {
 	// if(k)
 	// 	cout << "Positive or Negative" <<endl;
 
-	map<int,int> mp;
-	mp[1]++;
-	mp[2]++;
-	mp[2]--;	
+	// map<int,int> mp;
+	// mp[1]++;
+	// mp[2]++;
+	// mp[2]--;	
 
-	cout << mp.size() <<endl;
+	// cout << mp.size() <<endl;
 
-	string ans = "HEllo ";
-	ans[2] = 'P';
-	cout << ans;
+	// string ans = "HEllo ";
+	// ans[2] = 'P';
+	// cout << ans;
+
+	vector<int> vec = {0,1,2,3,4,5,6,7};
+	auto it = vec.insert(vec.begin() + 1,10);
+
+	print1d(vec);
+	cout << *it << endl;
+
+
 
 
 
