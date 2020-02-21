@@ -55,10 +55,12 @@ class Solution {
 public:
 
 	bool dfsUtil(const vector<vector<int>>& adj, int start, int color[], int c){
-		if(color[start] == 0)
-			color[start] = c;
-		else if(color[start] != c)
-			return false;
+
+		if(color[start] != 0){
+			// visited
+			return color[start] == c;
+		}
+		color[start] = c;
 
 		int ans = 1;
 		for(auto x: adj[start]){
@@ -90,13 +92,6 @@ public:
 
     bool isBipartite(vector<vector<int>>& graph) {
   		int n = graph.size();
-    	vector<vector<int>> adj(n);
-    	for(int i = 0; i < n; i++){
-    		// ith- node
-    		for(auto x: graph[i])
-    			adj[i].push_back(x);
-    	}
-
-    	return dfs(adj, n);      
+    	return dfs(graph, n);      
     }
 };
