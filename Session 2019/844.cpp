@@ -44,102 +44,49 @@ Accepted
 Submissions
 205,300
 
------------------------------------------------------
+--------------------------------------------------------------------------
 class Solution {
 public:
     bool backspaceCompare(string S, string T) {
-        stack<char> s,t;// 2 stacks for 2 strings
-        
+        stack<char> s;
         for(auto x: S){
-            if( x != '#')
-                s.push(x);
-            else{
+            if(x == '#'){
                 // #
                 if(!s.empty())
                     s.pop();
+            }else{
+                s.push(x);
             }
         }
         
+        string req1 = "";
+        while(!s.empty()){
+            req1 += s.top();
+            s.pop();
+        }
+        reverse(req1.begin(), req1.end());
+        
+        stack<char> t;
         for(auto x: T){
-            if( x != '#')
-                t.push(x);
-            else{
+            if(x == '#'){
                 // #
                 if(!t.empty())
                     t.pop();
+            }else{
+                t.push(x);
             }
         }
         
-        while(!s.empty()){
-            char c = s.top();
-            s.pop();
-            
-            if(t.empty() or t.top() != c)
-                return false;
-            
+        string req2 = "";
+        while(!t.empty()){
+            req2 += t.top();
             t.pop();
         }
+        reverse(req2.begin(), req2.end());
         
-        return t.empty() and s.empty() ;
+        return req1 == req2;
+        
+        
             
-        
-    }
-};
-
------------------------------------------------------------------------
-class Solution {
-public:
-    bool backspaceCompare(string S, string T) {
-        int n = S.length();
-        int m = T.length();
-        
-        int i = n - 1;
-        int j = m - 1;
-        
-        int skipS = 0;
-        int skipT = 0;
-        
-        while(i >=0 or j>= 0){
-            
-            // get the first valid character of S
-            while(i >= 0){
-                if(S[i] == '#'){
-                    skipS++;
-                    i--;
-                }else if(skipS > 0){
-                    i--;
-                    skipS--;
-                }else
-                    break;
-            }
-            
-            // get the first valid character of T
-            while(j >= 0){
-                if(T[j] == '#'){
-                    skipT++;
-                    j--;
-                }else if(skipT > 0){
-                    j--;
-                    skipT--;
-                }else
-                    break;
-            }
-            
-            // now we have i and j pointing to valid characters
-            if(i >= 0 and j>=0 and S[i] != T[j])
-                return false;
-            
-            // if one exists and the other Does not
-            if((i >= 0) != (j >= 0))
-                return false;
-            
-            // else it is valid. go ahead
-            i--;
-            j--;
-        }
-        
-        return true;
-        
-        
     }
 };

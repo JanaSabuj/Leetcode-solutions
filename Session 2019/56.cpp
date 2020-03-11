@@ -70,3 +70,40 @@ public:
         
     }
 };
+
+// another soln
+class Solution {
+public:
+    
+    bool isOverlap(const vector<int>& x,const vector<int>& y){
+        int left = max(x[0], y[0]);
+        int right = min(x[1], y[1]);
+        
+        return right>=left;
+    }
+    
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+         int n = intervals.size();
+        if(n == 0)
+            return {};
+        sort(intervals.begin(), intervals.end());
+        vector<int> temp = intervals[0];
+        
+       
+        vector<vector<int>> ans;
+        for(int i = 1; i < n; i++){
+            if(isOverlap(temp, intervals[i])){
+                //updt temp
+                temp[0] = min(temp[0], intervals[i][0]);
+                temp[1] = max(temp[1], intervals[i][1]);
+            }else{
+                ans.push_back(temp);
+                temp = intervals[i];
+            }
+        }
+        
+        ans.push_back(temp);
+        
+        return ans;
+    }
+};
