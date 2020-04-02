@@ -1,34 +1,25 @@
 class Solution {
 public:
-
-    int digSumSq(int n){
-        int sum=0;
-        while(n>0){
-            int x = n%10;
-            sum += x*x;
-            n/=10;
+    int getSumSquares(int n) {
+        int sum = 0;
+        while (n) {
+            int dig = n % 10;
+            n /= 10;
+            sum += dig * dig;
         }
-
         return sum;
     }
-    bool isHappy(int n, map<int,int> &hash) {
-        if(n==1)
-            return true;
-        
-        int sum=digSumSq(n); 
-        
-        if(hash[sum])
-            return false;
-        
-        hash[sum]++;
-        // cout << sum <<endl;
-        
-        return isHappy(sum, hash);
-    }
-    
-    bool isHappy(int n){
-        map<int,int> hash;
-        
-        return isHappy(n,hash);
+    bool isHappy(int n) {
+        map<int, int> mp;
+        while (n) {
+            int sum = getSumSquares(n);
+            if (sum == 1)
+                return true;
+            if (mp[sum])
+                return false;
+            mp[sum]++;
+            n = sum;
+        }
+        return false;
     }
 };
