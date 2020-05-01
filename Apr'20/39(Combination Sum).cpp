@@ -8,14 +8,16 @@ public:
         if(sum > target)
             return;
         
-        if(idx == n)
-            return;
-        
+          
         if(sum == target){
             global.push_back(vec);
             return;
-        }
+        }// before the check idx == n. imp
         
+        
+        if(idx == n)
+            return;
+      
         sum += arr[idx];
         vec.push_back(arr[idx]);
         helper(idx, n, sum, target, arr);
