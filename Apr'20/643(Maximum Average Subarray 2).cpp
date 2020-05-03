@@ -11,7 +11,7 @@ public:
         double nix[n];
         
         pref[0] = (double)nums[0] - x;
-        nix[0] = 0;
+        nix[0] = min(0, pref[0]);
         
         
         for(int i = 1; i < n; i++){
