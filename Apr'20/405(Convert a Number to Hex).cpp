@@ -2,17 +2,7 @@ class Solution {
 public:
     string toHex(int n) {
         
-        string ans = "";
-        
-        map<int,string> mp = {
-            {10, "a"},
-            {11, "b"},
-            {12, "c"},
-            {13, "d"},
-            {14, "e"},
-            {15, "f"},            
-        };
-        
+        string ans = "";       
         if(n == 0)
             return "0";
         
@@ -21,7 +11,9 @@ public:
             int x = num % 16;
             num >>= 4;
             
-            ans += (x <= 9 ? to_string(x) : mp[x]);
+            string t = "" ;
+            t = t + char(x - 10 + 'a');
+            ans += (x <= 9 ? to_string(x) : t);
         }
         
         reverse(ans.begin(), ans.end());
