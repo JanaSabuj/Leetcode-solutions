@@ -30,13 +30,13 @@ class LRUCache {
     }
     
     void moveNode(node* t){
-        this->removeNode(t);
-        this->addNode(t);
+        removeNode(t);
+        addNode(t);
     }
     
     node* popTail(){
         node* last = tail->prev;
-        this->removeNode(last);
+        removeNode(last);
         return last;
     }
     
@@ -60,7 +60,7 @@ public:
             return -1;
         
         node* t = mp[key];
-        this->moveNode(t);
+        moveNode(t);
         return t->val;
     }
     
@@ -69,17 +69,17 @@ public:
             // already available
             node* t = mp[key];
             t->val = value;
-            this->moveNode(t);
+            moveNode(t);
         }else{
             node* t = new node();
             t->key = key;
             t->val = value;
             
-            this->addNode(t);
+            addNode(t);
             mp[key] = t;
             
-            if(mp.size() > this->capacity){
-                node* last = this->popTail();
+            if(mp.size() > capacity){
+                node* last = popTail();
                 mp.erase(last->key);
             }
         }
