@@ -1,6 +1,6 @@
 class Solution {
     unordered_set<string> dict;
-    unordered_map<int,bool> mp;
+    vector<int> mp;
     int N;
     string str;
 public:
@@ -9,13 +9,13 @@ public:
         if(idx == N)
             return true;
         
-        if(mp.find(idx) != mp.end())
+        if(mp[idx] != -1)
             return mp[idx];
         
         // main        
-        for(int i = 1; i <= N - idx + 1; i++){
-            string left = str.substr(idx, i);
-            if(dict.find(left) != dict.end() and solve(idx + i))
+        for(int end = idx; end < N; end++){
+            string left = str.substr(idx, end - idx + 1);
+            if(dict.find(left) != dict.end() and solve(end + 1))
                 return mp[idx] = true;
         }
         
@@ -29,6 +29,7 @@ public:
         
         N = s.size();
         str = s;
+        mp.assign(N + 1, -1);
         return solve(0);
     }
 };
