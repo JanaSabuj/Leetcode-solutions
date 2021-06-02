@@ -1,24 +1,25 @@
 class Solution {
     unordered_set<string> dict;
-    unordered_map<string,bool> mp;
+    unordered_map<int,bool> mp;
+    int N;
+    string str;
 public:
-    bool solve(string str){
-        // base
-        int n = str.size();
-        if(n == 0)
+    bool solve(int idx){
+        // base        
+        if(idx == N)
             return true;
         
-        if(mp.find(str) != mp.end())
-            return mp[str];
+        if(mp.find(idx) != mp.end())
+            return mp[idx];
         
         // main        
-        for(int i = 1; i <= n; i++){
-            string left = str.substr(0, i);
-            if(dict.find(left) != dict.end() and solve(str.substr(i)))
-                return mp[str] = true;
+        for(int i = 1; i <= N - idx + 1; i++){
+            string left = str.substr(idx, i);
+            if(dict.find(left) != dict.end() and solve(idx + i))
+                return mp[idx] = true;
         }
         
-        return mp[str] = false;
+        return mp[idx] = false;
     }
     
     bool wordBreak(string s, vector<string>& wordDict) {
@@ -26,6 +27,8 @@ public:
             dict.insert(x);
         }
         
-        return solve(s);
+        N = s.size();
+        str = s;
+        return solve(0);
     }
 };
