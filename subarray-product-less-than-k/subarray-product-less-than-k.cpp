@@ -1,16 +1,21 @@
 class Solution {
 public:
     int numSubarrayProductLessThanK(vector<int>& nums, int k) {
-        int n = nums.size();
         int prod = 1;
-        int cnt = 0;
+        int n = nums.size();
         
-        for(int i = 0, j = 0; j < n; j++){
+        int cnt = 0;
+        int i = 0;// left ptr
+        for(int j = 0; j < n; j++){
+            // include
             prod *= nums[j];
-            // validate the prod
+            
+            // validate
             while(i <= j and prod >= k)
                 prod /= nums[i++];
-            cnt += j - i + 1;
+            
+            // i-j is the valid subarray
+            cnt += (j - i + 1);
         }
         
         return cnt;
