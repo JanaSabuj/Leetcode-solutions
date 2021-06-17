@@ -9,7 +9,9 @@ public:
         int pref = 0;
         int cnt = 0;
         for(int i = 0; i < n; i++){
-            pref = (pref + A[i]%k + k) % k;
+            pref = (pref + A[i]) % k;
+            if(pref < 0)
+                pref += k;
             cnt += mp[pref];
             mp[pref]++;
         }
