@@ -19,7 +19,7 @@ public:
         for(int k = 0; k < n; k++) {
             for (int i = 0; i < n; ++i){
                 for(int j = 0; j < n; j++) {
-                    if(dis[i][k] < INT_MAX and dis[k][j] < INT_MAX) {
+                    if(i != k and k != j and dis[i][k] < INT_MAX and dis[k][j] < INT_MAX) {
                         dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j]);
                     }
                 }
