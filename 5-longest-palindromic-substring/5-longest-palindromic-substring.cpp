@@ -5,12 +5,6 @@ public:
         int dp[n][n];// dp[i][j] = 1 if str[i][j] is a palindrome
                     //           = 0, otherwise
 
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
-                dp[i][j] = 0;
-            }
-        }
-
         // 1 len
         for(int i = 0; i < n; i++) {
             dp[i][i] = 1;
