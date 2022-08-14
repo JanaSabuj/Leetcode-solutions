@@ -12,11 +12,12 @@ typedef struct ListNode node;
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        node* dummy = new node(0);
-        dummy->next = head;
+        node* dummy = new node(0);// create a tangible dummy node before head node - 
+                                 //  helps in handle LL edge cases
+                                 // dummy -> head -> ..... -> NULL
+        dummy->next = head; 
 
-        node* right = head;
-        node* left = head;
+        node* right = head, *left = head;
         node* prev = dummy;
 
         // [-------------------------------]
@@ -32,6 +33,7 @@ public:
 
         while(right != NULL) {
             // right traverses (L-n) steps
+            // along with it, head also traverses L-n steps
             right = right->next;
             prev = left;
             left = left->next;
@@ -42,3 +44,6 @@ public:
         return dummy->next;
     }
 };
+
+// node* x = a, y = b; XXX
+// it should be node* x = a, *y = b;
